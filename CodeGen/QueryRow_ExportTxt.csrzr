@@ -1,0 +1,16 @@
+﻿@inherits DbCodeGen.CodeGenTemplate<DbCodeGen.DataRecordCodeGenModel>
+@*OutputFormat:TXT*@
+@{
+
+@*
+Sample template to export a single row of a query to a text file
+=================================================================================
+*@
+
+for (int curCol = 0; curCol < Model.Record.FieldCount; curCol++)
+{
+@:@(Model.Record.GetName(curCol)) : @(Model.Record.GetValue(curCol))
+}
+
+//end script
+}

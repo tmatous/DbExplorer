@@ -1,0 +1,52 @@
+﻿@inherits DbCodeGen.CodeGenTemplate<DbCodeGen.DataReaderCodeGenModel>
+@*OutputFormat:HTM*@
+@{
+
+@*
+Sample template to export results of a query to an HTML table
+=================================================================================
+*@
+
+@:<html>
+@:<head>
+@:<title></title>
+@:<style>
+@:body{font-family:"Lucida Sans Unicode", "Lucida Grande", Sans-Serif;font-size:12px;}
+@:.data-table{width:100%;text-align:left;border-collapse:collapse;}
+@:.data-table th{font-size:13px;font-weight:bold;text-align:left;background:#b9c9fe;border-top:4px solid #aabcfe;border-bottom:1px solid #fff;color:#039;padding:8px;}
+@:.data-table td{font-size:12px;background:#e8edff;border-bottom:1px solid #fff;color:#669;border-top:1px solid transparent;padding:8px;}
+@:.data-table tr:hover td{background:#d0dafd;color:#339;}
+</style>
+@:</head>
+@:<body>
+@:<table class="data-table">
+
+@:<tr>
+for (int curCol = 0; curCol < Model.Reader.FieldCount; curCol++)
+{
+
+@:	<th>@(Model.Reader.GetName(curCol))</th>
+
+}
+@:</tr>
+
+while (Model.Reader.Read())
+{
+
+@:<tr>
+	for (int curCol = 0; curCol < Model.Reader.FieldCount; curCol++)
+	{
+	
+@:	<td>@(Model.Reader.GetValue(curCol))</td>
+
+	}
+@:</tr>
+
+}
+
+@:</table>
+@:</body>
+@:</html>
+
+//end script
+}

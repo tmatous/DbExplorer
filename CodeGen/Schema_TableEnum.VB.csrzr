@@ -1,0 +1,36 @@
+﻿@inherits DbCodeGen.CodeGenTemplate<DbCodeGen.SchemaCodeGenModel>
+@*OutputFormat:VB*@
+@{
+
+@*
+Generates a data definition enum for one or more tables (VB)
+=================================================================================
+*@
+
+foreach (var tbl in Model.Tables)
+{
+
+@:<Table()>
+@:Public Enum @(tbl.ClrName)
+@:
+
+	for (var colIdx = 0; colIdx < tbl.Columns.Count; colIdx++)
+	{
+		var col = tbl.Columns[colIdx];
+		var colArgs = "NotNull:=" + (col.Nullable ? "False" : "True");
+		if (col.InPrimaryKey) colArgs += ", PrimaryKey:=True";
+		if (col.IsIdentity) colArgs += ", AutoIncrement:=True";
+
+@:	<Column(@(colArgs))>
+@:	@(Model.Helper.EscapeIdentifier(col.Name))
+@:	
+
+	} //foreach column
+	
+@:End Enum
+@:
+
+} //foreach table
+
+//end script
+}

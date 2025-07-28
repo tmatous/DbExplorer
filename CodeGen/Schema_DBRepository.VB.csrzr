@@ -1,0 +1,37 @@
+﻿@inherits DbCodeGen.CodeGenTemplate<DbCodeGen.SchemaCodeGenModel>
+@*OutputFormat:VB*@
+@{
+
+@*
+Generates a Data Layer (DL) repository class with properties for each table in the database
+=================================================================================
+*@
+
+@:Imports System
+@:
+@:Namespace DL
+@:
+@:	Partial Public Class DL__Repository
+@:
+
+foreach (var tbl in Model.Tables)
+{
+	var dlClassName = String.Format("DL_{0}", tbl.ClrName);
+	var dlClassRef = String.Format("DL.{0}", dlClassName);
+
+@:		Private _@(dlClassName) As @(dlClassRef)
+@:		Public ReadOnly Property @(tbl.ClrName) As @(dlClassRef)
+@:			Get
+@:				If (_@(dlClassName) Is Nothing) Then _@(dlClassName) = New @(dlClassRef)()
+@:				Return _@(dlClassName)
+@:			End Get
+@:		End Property
+@:
+} //foreach table
+
+@:	End Class
+@:
+@:End Namespace
+
+//end script
+}

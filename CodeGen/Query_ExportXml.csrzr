@@ -1,0 +1,29 @@
+﻿@inherits DbCodeGen.CodeGenTemplate<DbCodeGen.DataReaderCodeGenModel>
+@*OutputFormat:XML*@
+@{
+
+@*
+Sample template to export results of a query to an XML file
+=================================================================================
+*@
+
+@:<Table>
+
+while (Model.Reader.Read())
+{
+
+@:<Row>
+for (int curCol = 0; curCol < Model.Reader.FieldCount; curCol++)
+{
+
+@:	<@(Model.Reader.GetName(curCol))>@(Model.Reader.GetValue(curCol))</@(Model.Reader.GetName(curCol))>
+
+}
+@:</Row>
+
+}
+
+@:</Table>
+
+//end script
+}

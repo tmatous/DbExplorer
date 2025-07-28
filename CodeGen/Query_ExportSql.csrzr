@@ -1,0 +1,36 @@
+﻿@inherits DbCodeGen.CodeGenTemplate<DbCodeGen.DataReaderCodeGenModel>
+@*OutputFormat:SQL*@
+@{
+
+@*
+Sample template to export results of a query to a list of SQL INSERTs
+=================================================================================
+*@
+
+while (Model.Reader.Read())
+{
+@:INSERT INTO TestTable
+@:(
+
+	var delim = "";
+	for (int curCol = 0; curCol < Model.Reader.FieldCount; curCol++)
+	{
+@:	@(delim)[@(Model.Reader.GetName(curCol))]
+		delim = ", ";
+	}
+
+@:) VALUES (
+
+	delim = "";
+	for (int curCol = 0; curCol < Model.Reader.FieldCount; curCol++)
+	{
+@:	@(delim)@(Model.Helper.FormatSqlData(Model.Reader.GetValue(curCol)))
+		delim = ", ";
+	}
+
+@:);
+
+}
+
+//end script
+}

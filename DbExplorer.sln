@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DbExplorer", "DbExplorer.vbproj", "{3069E73D-CF94-4174-BC96-5DC82CBE8153}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DbExplorer32", "DbExplorer32\DbExplorer32.vbproj", "{135F34BF-053F-406C-9738-95E8CF04064C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Mixed = Debug|Mixed
+		Release|Mixed = Release|Mixed
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3069E73D-CF94-4174-BC96-5DC82CBE8153}.Debug|Mixed.ActiveCfg = Debug|Any CPU
+		{3069E73D-CF94-4174-BC96-5DC82CBE8153}.Debug|Mixed.Build.0 = Debug|Any CPU
+		{3069E73D-CF94-4174-BC96-5DC82CBE8153}.Release|Mixed.ActiveCfg = Release|Any CPU
+		{3069E73D-CF94-4174-BC96-5DC82CBE8153}.Release|Mixed.Build.0 = Release|Any CPU
+		{135F34BF-053F-406C-9738-95E8CF04064C}.Debug|Mixed.ActiveCfg = Debug|x86
+		{135F34BF-053F-406C-9738-95E8CF04064C}.Debug|Mixed.Build.0 = Debug|x86
+		{135F34BF-053F-406C-9738-95E8CF04064C}.Release|Mixed.ActiveCfg = Release|x86
+		{135F34BF-053F-406C-9738-95E8CF04064C}.Release|Mixed.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

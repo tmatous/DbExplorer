@@ -1,0 +1,13 @@
+This installs the .NET managed driver for Oracle. This should be the only thing required on the machine.
+
+Install the DLL to the GAC:
+
+	gacutil /i Oracle.ManagedDataAccess.dll
+
+To register the provider for DbExplorer, make changes to the config file, or
+to register the provider globally, make changes to machine.config, found here:
+
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\machine.config
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\Config\machine.config
+
+

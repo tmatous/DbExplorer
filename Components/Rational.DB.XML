@@ -1,0 +1,2201 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rational.DB</name>
+    </assembly>
+    <members>
+        <member name="T:Rational.DB.eDbType">
+            <summary>
+            Enum representing the supported database types
+            </summary>
+        </member>
+        <member name="F:Rational.DB.eDbType.Unknown">
+            <summary>Database type is unknown</summary>
+        </member>
+        <member name="F:Rational.DB.eDbType.SqlServer">
+            <summary>Microsoft SQL Server</summary>
+        </member>
+        <member name="F:Rational.DB.eDbType.SqlServerCe">
+            <summary>Microsoft SQL Server CE</summary>
+        </member>
+        <member name="F:Rational.DB.eDbType.Oracle">
+            <summary>Oracle</summary>
+        </member>
+        <member name="F:Rational.DB.eDbType.MySql">
+            <summary>MySQL</summary>
+        </member>
+        <member name="T:Rational.DB.DbConnectionInfo">
+            <summary>
+            Class storing the information required to connect to a database.
+            </summary>
+        </member>
+        <member name="P:Rational.DB.DbConnectionInfo.ConnectionString">
+            <summary>Connection string for database</summary>
+        </member>
+        <member name="P:Rational.DB.DbConnectionInfo.DbType">
+            <summary>Type of database</summary>
+        </member>
+        <member name="P:Rational.DB.DbConnectionInfo.Provider">
+            <summary>.NET provider class, if different from default for DbType</summary>
+        </member>
+        <member name="F:Rational.DB.DbConnectionInfo._providerToType">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbConnectionInfo._providers">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConnectionInfo.InitProviders">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConnectionInfo.#ctor(System.String,Rational.DB.eDbType)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConnectionInfo.#ctor(System.String,Rational.DB.eDbType,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConnectionInfo.#ctor(System.String,System.String)">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbConnectionInfo._factory">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConnectionInfo.GetFactory">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.TableAttribute">
+            <summary>
+            Attribute for an Enum representing a database table definition
+            </summary>
+        </member>
+        <member name="P:Rational.DB.TableAttribute.SqlName">
+            <summary>Name of the table in the database</summary>
+        </member>
+        <member name="P:Rational.DB.TableAttribute.UppercaseIdentifiers">
+            <summary>Automatically convert table and column names to upper case</summary>
+        </member>
+        <member name="T:Rational.DB.ColumnAttribute">
+            <summary>
+            Attribute for an Enum value representing a database column definition
+            </summary>
+        </member>
+        <member name="P:Rational.DB.ColumnAttribute.SqlName">
+            <summary>Name of the column in the database</summary>
+        </member>
+        <member name="P:Rational.DB.ColumnAttribute.ClrName">
+            <summary>Name of the column in code</summary>
+        </member>
+        <member name="P:Rational.DB.ColumnAttribute.SqlType">
+            <summary>Datatype of the column in the database. String value of a member of the System.Data.DbType enum</summary>
+        </member>
+        <member name="P:Rational.DB.ColumnAttribute.SqlTypeEnum">
+            <summary>Datatype of the column in the database</summary>
+        </member>
+        <member name="P:Rational.DB.ColumnAttribute.NotNull">
+            <summary>Whether column is not nullable in the database</summary>
+        </member>
+        <member name="P:Rational.DB.ColumnAttribute.PrimaryKey">
+            <summary>Whether column participates in the primary key of the table</summary>
+        </member>
+        <member name="P:Rational.DB.ColumnAttribute.Computed">
+            <summary>Whether column value is computed by the database</summary>
+        </member>
+        <member name="P:Rational.DB.ColumnAttribute.AutoIncrement">
+            <summary>Whether column is an auto increment key field</summary>
+        </member>
+        <member name="T:Rational.DB.DbConnectionHandle">
+            <summary>
+            Wraps a .NET DbConnection object to limit access to database functions, and reduce requirement for disposable objects
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Rational.DB.DbConnectionHandle._connInfo">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbConnectionHandle._connection">
+            <summary></summary>
+        </member>
+        <member name="E:Rational.DB.DbConnectionHandle.OnClose">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbConnectionHandle.OnCloseEventHandler">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConnectionHandle.#ctor(Rational.DB.DbConnectionInfo)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConnectionHandle.CreateCommand">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConnectionHandle.Dispose">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConnectionHandle.Dispose(System.Boolean)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.FormatString.Format(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Replaces keys in a string with the values of matching object properties. Like String.Format but using named placeholders.
+            <remarks>Uses String.Format() internally; custom formats should match those used for that method.</remarks>
+            </summary>
+            <param name="pFormat">The format string, containing keys like {foo} and {foo:SomeFormat}.</param>
+            <param name="pData">Dictionary of named values that should be injected in the string</param>
+            <returns>A version of the format string with keys replaced by (formatted) key values.</returns>
+        </member>
+        <member name="M:Rational.DB.FormatString.Format(System.String,System.Object)">
+            <summary>
+            Replaces keys in a string with the values of matching object properties. Like String.Format but using named placeholders.
+            <remarks>Uses String.Format() internally; custom formats should match those used for that method.</remarks>
+            </summary>
+            <param name="pFormat">The format string, containing keys like {foo} and {foo:SomeFormat}.</param>
+            <param name="pData">The object whose properties should be injected in the string</param>
+            <returns>A version of the format string with keys replaced by (formatted) key values.</returns>
+        </member>
+        <member name="M:Rational.DB.FormatString.GetPlaceholders(System.String)">
+            <summary>
+            Parse a format string and return a list of required placeholder data
+            </summary>
+            <param name="pFormat">Format string to examine</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="T:Rational.DB.DbParameter">
+            <summary>
+            Database-agnostic class to represent a database parameter
+            </summary>
+        </member>
+        <member name="M:Rational.DB.DbParameter.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameter.#ctor(System.String,System.Object)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameter.#ctor(System.String,System.Object,System.Data.DbType)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameter.#ctor(System.String,System.Object,System.String)">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.ParameterName">
+            <summary>Name of the parameter</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.Value">
+            <summary>Value of the parameter</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.DbType">
+            <summary>Database data type of the parameter</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.DbTypeSpecified">
+            <summary>Indicates whether the DbType value was explictly set</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.Direction">
+            <summary>Specifies whether data is coming from or going to the database through this parameter</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.Size">
+            <summary>The size of the parameter</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.Precision">
+            <summary>Indicates the precision of numeric parameters</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.Scale">
+            <summary>Indicates the scale of numeric parameters</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.ProviderDbType">
+            <summary>Provider-specific database data type of the parameter</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.ClrType">
+            <summary>If it is possible to determine ClrType of the parameter, store here for possible provider mapping later</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.ProviderParameter">
+            <summary>Store the instantiated provider parameter to copy output parameter values</summary>
+        </member>
+        <member name="P:Rational.DB.DbParameter.SourceProviderParameter">
+            <summary>Provider parameter. Can be specified in DbParameter creation, to support unsupported features of the DBMS</summary>
+        </member>
+        <member name="M:Rational.DB.DbParameter.GetOutputValue``1">
+            <summary>Get typecast output value of an output parameter</summary>
+        </member>
+        <member name="T:Rational.DB.DbParameterCollection">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbParameterCollection._parameters">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbParameterCollection.Count">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbParameterCollection.SyncRoot">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbParameterCollection.IsSynchronized">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.CopyTo(System.Array,System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.GetEnumerator">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.Clear">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.Add(System.String,System.Object)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.Add(System.String,System.Object,System.Data.DbType)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.Add(System.String,System.Object,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.Add(System.String,System.Object,System.Type)">
+            <summary>Internal method for when CLR type is known</summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.Add(Rational.DB.DbParameterCollection)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.Add(Rational.DB.DbParameter)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.Add(System.Data.IDbDataParameter)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddOutput(System.String,System.Data.DbType,System.Int32)">
+            <summary>Add output parameter</summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddOutput(System.String,System.Data.DbType,System.Byte,System.Byte)">
+            <summary>Add output parameter</summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddOutput(System.String,System.Data.DbType,System.Int32,System.Byte,System.Byte)">
+            <summary>Add output parameter</summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInputOutput(System.String,System.Object,System.Data.DbType,System.Int32)">
+            <summary>Add input/output parameter</summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInputOutput(System.String,System.Object,System.Data.DbType,System.Byte,System.Byte)">
+            <summary>Add input/output parameter</summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInputOutput(System.String,System.Object,System.Data.DbType,System.Int32,System.Byte,System.Byte)">
+            <summary>Add input/output parameter</summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddReturnValue(System.String)">
+            <summary>Add return value parameter</summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddAnsiString(System.String,System.String,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddAnsiStringNullable(System.String,System.String,System.Boolean)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddUString(System.String,System.String,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddUStringNullable(System.String,System.String,System.Boolean)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddBoolean(System.String,System.Boolean)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddBooleanNullable(System.String,System.Nullable{System.Boolean})">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInt32(System.String,System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInt32(System.String,System.Nullable{System.Int32},System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInt32Nullable(System.String,System.Int32,System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInt32Nullable(System.String,System.Nullable{System.Int32})">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInt64(System.String,System.Int64)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInt64(System.String,System.Nullable{System.Int64},System.Int64)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInt64Nullable(System.String,System.Int64,System.Int64)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddInt64Nullable(System.String,System.Nullable{System.Int64})">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddSingle(System.String,System.Single)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddSingle(System.String,System.Nullable{System.Single},System.Single)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddSingleNullable(System.String,System.Single,System.Single)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddSingleNullable(System.String,System.Nullable{System.Single})">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddDouble(System.String,System.Double)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddDouble(System.String,System.Nullable{System.Double},System.Double)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddDoubleNullable(System.String,System.Double,System.Double)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddDoubleNullable(System.String,System.Nullable{System.Double})">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddDecimal(System.String,System.Decimal)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddDecimal(System.String,System.Nullable{System.Decimal},System.Decimal)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddDecimalNullable(System.String,System.Decimal,System.Decimal)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddDecimalNullable(System.String,System.Nullable{System.Decimal})">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddDateTime(System.String,System.DateTime)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddDateTimeNullable(System.String,System.Nullable{System.DateTime})">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddTimeSpan(System.String,System.TimeSpan)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddTimeSpanNullable(System.String,System.Nullable{System.TimeSpan})">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddGuid(System.String,System.Guid)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddGuidNullable(System.String,System.Nullable{System.Guid})">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddByteArray(System.String,System.Byte[])">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddByteArrayNullable(System.String,System.Byte[],System.Boolean)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbParameterCollection.AddRowVersion(System.String,System.UInt64)">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbRow">
+            <summary>
+            Wraps a DataReader object to present a single row of data to a consumer
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Rational.DB.DbRow._myReader">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbRow._myDb">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbRow._fieldDbTypes">
+            <summary>Keeps track of the field provider types, to support custom mapping</summary>
+        </member>
+        <member name="F:Rational.DB.DbRow._fieldTypes">
+            <summary>Keeps track of the field CLR types, to support custom mapping</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.#ctor(Rational.DB.Database,System.Data.IDataReader)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.LoadCustomMappings">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetName(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetFieldType(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbRow.FieldCount">
+            <summary>Number of fields in this result</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetValue(System.Int32)">
+            <summary>gets specified column as Object, null if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetValue``1(System.Int32,``0)">
+            <summary>gets specified column as T, pDefault if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetValue``1(System.Int32)">
+            <summary>gets specified column as T, default if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetValue``1(System.String,``0)">
+            <summary>gets specified column as T, pDefault if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetValue``1(System.Enum,``0)">
+            <summary>gets specified column as T, pDefault if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetValue``1(System.String)">
+            <summary>gets specified column as T, default if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetValue``1(System.Enum)">
+            <summary>gets specified column as T, default if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetValue(System.String)">
+            <summary>gets specified column as Object, null if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetValue(System.Enum)">
+            <summary>gets specified column as Object, null if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetValues">
+            <summary>gets all columns as List of Object, nulls if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetValuesDict">
+            <summary>gets all columns as Dictionary of Object, nulls if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetNames">
+            <summary>gets all column names</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetString(System.Int32)">
+            <summary>gets specified column as String, empty string if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetString(System.String)">
+            <summary>gets specified column as String, empty string if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetString(System.Enum)">
+            <summary>gets specified column as String, empty string if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetByte(System.Int32)">
+            <summary>gets specified column as Byte, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetByte(System.String)">
+            <summary>gets specified column as Byte, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetByte(System.Enum)">
+            <summary>gets specified column as Byte, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetByte(System.Int32,System.Byte)">
+            <summary>gets specified column as Byte, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetByte(System.String,System.Byte)">
+            <summary>gets specified column as Byte, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetByte(System.Enum,System.Byte)">
+            <summary>gets specified column as Byte, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetByteNullable(System.Int32)">
+            <summary>gets specified column as nullable Byte</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetByteNullable(System.String)">
+            <summary>gets specified column as nullable Byte</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetByteNullable(System.Enum)">
+            <summary>gets specified column as nullable Byte</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetInt16(System.Int32)">
+            <summary>gets specified column as Int16, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt16(System.String)">
+            <summary>gets specified column as Int16, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt16(System.Enum)">
+            <summary>gets specified column as Int16, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetInt16(System.Int32,System.Int16)">
+            <summary>gets specified column as Int16, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt16(System.String,System.Int16)">
+            <summary>gets specified column as Int16, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt16(System.Enum,System.Int16)">
+            <summary>gets specified column as Int16, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetInt16Nullable(System.Int32)">
+            <summary>gets specified column as nullable Int16</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt16Nullable(System.String)">
+            <summary>gets specified column as nullable Int16</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt16Nullable(System.Enum)">
+            <summary>gets specified column as nullable Int16</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetInt32(System.Int32)">
+            <summary>gets specified column as Int32, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt32(System.String)">
+            <summary>gets specified column as Int32, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt32(System.Enum)">
+            <summary>gets specified column as Int32, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetInt32(System.Int32,System.Int32)">
+            <summary>gets specified column as Int32, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt32(System.String,System.Int32)">
+            <summary>gets specified column as Int32, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt32(System.Enum,System.Int32)">
+            <summary>gets specified column as Int32, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetInt32Nullable(System.Int32)">
+            <summary>gets specified column as nullable Int32</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt32Nullable(System.String)">
+            <summary>gets specified column as nullable Int32</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt32Nullable(System.Enum)">
+            <summary>gets specified column as nullable Int32</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetInt64(System.Int32)">
+            <summary>gets specified column as Int64, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt64(System.String)">
+            <summary>gets specified column as Int64, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt64(System.Enum)">
+            <summary>gets specified column as Int64, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetInt64(System.Int32,System.Int64)">
+            <summary>gets specified column as Int64, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt64(System.String,System.Int64)">
+            <summary>gets specified column as Int64, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt64(System.Enum,System.Int64)">
+            <summary>gets specified column as Int64, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetInt64Nullable(System.Int32)">
+            <summary>gets specified column as nullable Int64</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt64Nullable(System.String)">
+            <summary>gets specified column as nullable Int64</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt64Nullable(System.Enum)">
+            <summary>gets specified column as nullable Int64</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetSingle(System.Int32)">
+            <summary>gets specified column as Single, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetSingle(System.String)">
+            <summary>gets specified column as Single, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetSingle(System.Enum)">
+            <summary>gets specified column as Single, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetSingle(System.Int32,System.Single)">
+            <summary>gets specified column as Single, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetSingle(System.String,System.Single)">
+            <summary>gets specified column as Single, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetSingle(System.Enum,System.Single)">
+            <summary>gets specified column as Single, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetSingleNullable(System.Int32)">
+            <summary>gets specified column as nullable Single</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetSingleNullable(System.String)">
+            <summary>gets specified column as nullable Single</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetSingleNullable(System.Enum)">
+            <summary>gets specified column as nullable Single</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetDouble(System.Int32)">
+            <summary>gets specified column as Double, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDouble(System.String)">
+            <summary>gets specified column as Double, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDouble(System.Enum)">
+            <summary>gets specified column as Double, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetDouble(System.Int32,System.Double)">
+            <summary>gets specified column as Double, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDouble(System.String,System.Double)">
+            <summary>gets specified column as Double, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDouble(System.Enum,System.Double)">
+            <summary>gets specified column as Double, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetDoubleNullable(System.Int32)">
+            <summary>gets specified column as nullable Double</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDoubleNullable(System.String)">
+            <summary>gets specified column as nullable Double</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDoubleNullable(System.Enum)">
+            <summary>gets specified column as nullable Double</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetDecimal(System.Int32)">
+            <summary>gets specified column as Decimal, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDecimal(System.String)">
+            <summary>gets specified column as Decimal, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDecimal(System.Enum)">
+            <summary>gets specified column as Decimal, 0 if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetDecimal(System.Int32,System.Decimal)">
+            <summary>gets specified column as Decimal, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDecimal(System.String,System.Decimal)">
+            <summary>gets specified column as Decimal, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDecimal(System.Enum,System.Decimal)">
+            <summary>gets specified column as Decimal, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetDecimalNullable(System.Int32)">
+            <summary>gets specified column as nullable Decimal</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDecimalNullable(System.String)">
+            <summary>gets specified column as nullable Decimal</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDecimalNullable(System.Enum)">
+            <summary>gets specified column as nullable Decimal</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetDateTime(System.Int32)">
+            <summary>gets specified column as DateTime, MinValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDateTime(System.String)">
+            <summary>gets specified column as DateTime, MinValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDateTime(System.Enum)">
+            <summary>gets specified column as DateTime, MinValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetDateTime(System.Int32,System.DateTime)">
+            <summary>gets specified column as DateTime, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDateTime(System.String,System.DateTime)">
+            <summary>gets specified column as DateTime, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDateTime(System.Enum,System.DateTime)">
+            <summary>gets specified column as DateTime, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetDateTimeNullable(System.Int32)">
+            <summary>gets specified column as nullable DateTime</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDateTimeNullable(System.String)">
+            <summary>gets specified column as nullable DateTime</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDateTimeNullable(System.Enum)">
+            <summary>gets specified column as nullable DateTime</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetTimeSpan(System.Int32)">
+            <summary>gets specified column as DateTime, MinValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetTimeSpan(System.String)">
+            <summary>gets specified column as TimeSpan, MinValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetTimeSpan(System.Enum)">
+            <summary>gets specified column as TimeSpan, MinValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetTimeSpan(System.Int32,System.TimeSpan)">
+            <summary>gets specified column as TimeSpan, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetTimeSpan(System.String,System.TimeSpan)">
+            <summary>gets specified column as TimeSpan, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetTimeSpan(System.Enum,System.TimeSpan)">
+            <summary>gets specified column as TimeSpan, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetTimeSpanNullable(System.Int32)">
+            <summary>gets specified column as nullable TimeSpan</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetTimeSpanNullable(System.String)">
+            <summary>gets specified column as nullable TimeSpan</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetTimeSpanNullable(System.Enum)">
+            <summary>gets specified column as nullable TimeSpan</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetBoolean(System.Int32)">
+            <summary>gets specified column as Boolean, False if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetBoolean(System.String)">
+            <summary>gets specified column as Boolean, False if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetBoolean(System.Enum)">
+            <summary>gets specified column as Boolean, False if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetBooleanNullable(System.Int32)">
+            <summary>gets specified column as nullable Boolean</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetBooleanNullable(System.String)">
+            <summary>gets specified column as nullable Boolean</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetBooleanNullable(System.Enum)">
+            <summary>gets specified column as nullable Boolean</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetGuid(System.Int32)">
+            <summary>gets specified column as Guid, null if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetGuid(System.String)">
+            <summary>gets specified column as Guid, null if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetGuid(System.Enum)">
+            <summary>gets specified column as Guid, null if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetGuid(System.Int32,System.Guid)">
+            <summary>gets specified column as Guid, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetGuid(System.String,System.Guid)">
+            <summary>gets specified column as Guid, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetGuid(System.Enum,System.Guid)">
+            <summary>gets specified column as Guid, pNullValue if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetGuidNullable(System.Int32)">
+            <summary>gets specified column as nullable Guid</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetGuidNullable(System.String)">
+            <summary>gets specified column as nullable Guid</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetGuidNullable(System.Enum)">
+            <summary>gets specified column as nullable Guid</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetByteArray(System.Int32)">
+            <summary>gets specified column as Byte array, null if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetByteArray(System.String)">
+            <summary>gets specified column as Byte array, null if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetByteArray(System.Enum)">
+            <summary>gets specified column as Byte array, null if dbnull</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow._GetRowVersion(System.Int32)">
+            <summary>gets specified rowversion column as UInt64</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetRowVersion(System.String)">
+            <summary>gets specified rowversion column as UInt64</summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetRowVersion(System.Enum)">
+            <summary>gets specified rowversion column as UInt64</summary>
+        </member>
+        <member name="P:Rational.DB.DbRow.Item(System.String)">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbRow.Item(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.System#Data#IDataRecord#GetName(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDataTypeName(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.System#Data#IDataRecord#GetFieldType(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetValue(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetValues(System.Object[])">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetOrdinal(System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetBoolean(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetByte(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetChar(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetGuid(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt16(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt32(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetInt64(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetFloat(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDouble(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetString(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDecimal(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetDateTime(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.GetData(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.IsDBNull(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.Dispose">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbRow.Dispose(System.Boolean)">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbResultSet">
+            <summary>
+            Wraps a DataReader object to present data to a consumer
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.DbResultSet.#ctor(Rational.DB.Database,System.Data.IDataReader)">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbResultSet.RecordsAffected">
+            <summary>Number of records affected by the query</summary>
+        </member>
+        <member name="M:Rational.DB.DbResultSet.Read">
+            <summary>Advance to the first or subsequent records. Returns true if a record was found.</summary>
+        </member>
+        <member name="M:Rational.DB.DbResultSet.NextResult">
+            <summary>Advance to the second or subsequent result sets. Returns true if the result set was found.</summary>
+        </member>
+        <member name="M:Rational.DB.DbResultSet.LoadDataTable(System.Data.DataTable)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbResultSet.LoadDataSet(System.Data.DataSet)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbResultSet.Close">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbResultSet.GetSchemaTable">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbResultSet.Depth">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbResultSet.IsClosed">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.Database">
+            <summary>
+            Provides database access functions
+            </summary>
+        </member>
+        <member name="F:Rational.DB.Database._connInfo">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.#ctor(Rational.DB.DbConnectionInfo)">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.Database.QuotePrefix">
+            <summary>Prefix for escaping SQL identifiers</summary>
+        </member>
+        <member name="P:Rational.DB.Database.QuoteSuffix">
+            <summary>Suffix for escaping SQL identifiers</summary>
+        </member>
+        <member name="P:Rational.DB.Database.ParameterPrefix">
+            <summary>Prefix for a named parameter</summary>
+        </member>
+        <member name="E:Rational.DB.Database.OnValidationWarning">
+            <summary>Event that fires when a validation warning is detected</summary>
+        </member>
+        <member name="T:Rational.DB.Database.ValidationWarningEventHandler">
+            <summary>Delegate for ValidationWarning event</summary>
+        </member>
+        <member name="T:Rational.DB.Database.ValidationWarningEventArgs">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.ValidationWarningEventArgs.WarningType">
+            <summary>Type of the validation warning</summary>
+        </member>
+        <member name="F:Rational.DB.Database.ValidationWarningEventArgs.Summary">
+            <summary>Summary of the warning</summary>
+        </member>
+        <member name="T:Rational.DB.Database.ValidationWarningEventArgs.eWarningType">
+            <summary>Type of the validation warning</summary>
+        </member>
+        <member name="F:Rational.DB.Database.ValidationWarningEventArgs.eWarningType.Unknown">
+            <summary>Unknown or unassigned status</summary>
+        </member>
+        <member name="F:Rational.DB.Database.ValidationWarningEventArgs.eWarningType.DuplicateDbField">
+            <summary>DB has multiple fields of the same name</summary>
+        </member>
+        <member name="F:Rational.DB.Database.ValidationWarningEventArgs.eWarningType.DuplicateClrField">
+            <summary>CLR has multiple fields of the same name (could be differing case)</summary>
+        </member>
+        <member name="F:Rational.DB.Database.ValidationWarningEventArgs.eWarningType.DifferentDataType">
+            <summary>DB field and CLR field are different types</summary>
+        </member>
+        <member name="F:Rational.DB.Database.ValidationWarningEventArgs.eWarningType.MissingDbField">
+            <summary>Field exists in CLR but not DB</summary>
+        </member>
+        <member name="F:Rational.DB.Database.ValidationWarningEventArgs.eWarningType.MissingClrField">
+            <summary>Field exists in DB but not CLR</summary>
+        </member>
+        <member name="E:Rational.DB.Database.OnBeforeExecute">
+            <summary>Event that fires before a statement is executed</summary>
+        </member>
+        <member name="T:Rational.DB.Database.BeforeExecuteEventHandler">
+            <summary>Delegate for BeforeExecute event</summary>
+        </member>
+        <member name="T:Rational.DB.Database.BeforeExecuteEventArgs">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.BeforeExecuteEventArgs.Sql">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.BeforeExecuteEventArgs.Parameters">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.BeforeExecuteEventArgs.ParameterSummary">
+            <summary></summary>
+        </member>
+        <member name="E:Rational.DB.Database.OnExecuteComplete">
+            <summary>Event that fires after a statement has finished executing</summary>
+        </member>
+        <member name="T:Rational.DB.Database.ExecuteCompleteEventHandler">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.Database.ExecuteCompleteEventArgs">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.ExecuteCompleteEventArgs.Sql">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.ExecuteCompleteEventArgs.Parameters">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.ExecuteCompleteEventArgs.ParameterSummary">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.ExecuteCompleteEventArgs.StartTime">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.ExecuteCompleteEventArgs.DurationMs">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.ExecuteCompleteEventArgs.Status">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.ExecuteCompleteEventArgs.Exception">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.Database.ExecuteCompleteEventArgs.eStatus">
+            <summary>Status of the SQL execution</summary>
+        </member>
+        <member name="F:Rational.DB.Database.ExecuteCompleteEventArgs.eStatus.Unknown">
+            <summary>Unknown or unassigned status</summary>
+        </member>
+        <member name="F:Rational.DB.Database.ExecuteCompleteEventArgs.eStatus.Error">
+            <summary>Execution generated an error</summary>
+        </member>
+        <member name="F:Rational.DB.Database.ExecuteCompleteEventArgs.eStatus.Success">
+            <summary>Execution was successful</summary>
+        </member>
+        <member name="T:Rational.DB.Database.DbEventWrapper">
+            <summary>Wrapper class to track all data for handling onExecuteComplete event</summary>
+        </member>
+        <member name="F:Rational.DB.Database.DbEventWrapper._parent">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.DbEventWrapper._cmd">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.DbEventWrapper._timer">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.DbEventWrapper._completeStatus">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database.DbEventWrapper._completeException">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.DbEventWrapper.#ctor(Rational.DB.Database,System.Data.IDbCommand)">
+            <summary>Constructor, initiates timer</summary>
+        </member>
+        <member name="M:Rational.DB.Database.DbEventWrapper.Success">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.DbEventWrapper.Fail(System.Exception)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.DbEventWrapper.Close">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.DbEventWrapper.Dispose">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.DbEventWrapper.Dispose(System.Boolean)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.ConfigureCommand(System.Data.IDbCommand,Rational.DB.IDbStatement)">
+            <summary>
+            Configures a native SQL command object with the SQL and parameters stored in the statement
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.ConfigureCommand(System.Data.IDbCommand,Rational.DB.DbSelectPager)">
+            <summary>
+            Configures a native SQL command object with the SQL and parameters stored in the statement
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.ConfigureRowCountCommand(System.Data.IDbCommand,Rational.DB.DbSelectPager)">
+            <summary>
+            Configures a native SQL command object with the SQL and parameters stored in the statement
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.AddCommandParameters(System.Data.IDbCommand,Rational.DB.IDbStatement)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.CreateConnection">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.CreateDataAdapter(System.Data.IDbCommand)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.HandleCommand(System.Action{System.Data.IDbCommand})">
+            <summary>
+            Wraps all disposable objects as necessary to run a command
+            </summary>
+            <param name="pBehavior"></param>
+        </member>
+        <member name="F:Rational.DB.Database._dbToClrMapByDbType">
+            <summary>Mapping functions by DbType</summary>
+        </member>
+        <member name="F:Rational.DB.Database._dbToClrMapByType">
+            <summary>Mapping functions by Type</summary>
+        </member>
+        <member name="M:Rational.DB.Database.MapDbToClr(System.Object,System.Data.DbType,System.Type)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.HasCustomDbToClrMappings">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.MapDbToClrType(System.Data.DbType,System.Func{System.Object,System.Object})">
+            <summary>Change the mapping of DB value (by DbType) into a CLR field</summary>
+        </member>
+        <member name="M:Rational.DB.Database.MapDbToClrType(System.Type,System.Func{System.Object,System.Object})">
+            <summary>Change the mapping of DB value (by System.Type) into a CLR field</summary>
+        </member>
+        <member name="M:Rational.DB.Database.ConvertProviderDbType(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database._clrToDbTypeMap">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.GetDbType(System.Type)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.MapClrToDbType(System.Type,System.Data.DbType)">
+            <summary>Change the mapping of a CLR type to a DbType, for parameters</summary>
+        </member>
+        <member name="P:Rational.DB.Database.Transaction">
+            <summary>Transaction object, if database is currently executing within a transaction</summary>
+        </member>
+        <member name="M:Rational.DB.Database.BeginTransaction">
+            <summary>
+            Begins a new transaction for this Database object. All database activity while this transaction is active will be in the transaction. Transaction handle must be disposed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.JoinTransaction(Rational.DB.DbTransaction)">
+            <summary>Join this database object to another existing transaction</summary>
+        </member>
+        <member name="M:Rational.DB.Database._transaction_OnClose(System.Object,System.EventArgs)">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.Database._persistentConnection">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.PersistentConnection">
+            <summary>
+            Establish a persistent connection for this Database. All database activity while this connection is active will be on the connection. Connection handle must be disposed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database._persistentConnection_OnClose(System.Object,System.EventArgs)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.CreateStatement``1">
+            <summary>
+            Create a new statement of the specified type with properties appropriate for this database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.CreateStatement">
+            <summary>
+            Create a new DbStatement for this database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.CreateStatement(System.String)">
+            <summary>
+            Create a new DbStatement for this database with the specified SQL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.CreateStatement(System.String,System.Object)">
+            <summary>
+            Create a new DbStatement for this database with the specified SQL and parameter data
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParams">Parameter(s) to associate with the SQL. For numbered parameters, pass a scalar value or a list of scalars. For named parameters, pass an object with a property for each value.</param>
+        </member>
+        <member name="M:Rational.DB.Database.CreateStatement(System.String,System.Object,System.Object)">
+            <summary>
+            Create a new DbStatement for this database with the specified SQL and parameter data
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.Database.CreateStatement(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Create a new DbStatement for this database with the specified SQL and parameter data
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.Database.CreateStatement(System.String,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Create a new DbStatement for this database with the specified SQL and parameter data
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.Database.CreateProcedureCall(System.String)">
+            <summary>
+            Create a new DbProcedureCall for this database with the specified stored proc name
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.CreateSelectStatement">
+            <summary>
+            Create a new SELECT statement with properties appropriate for this database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.CreateSelectStatement(System.String,System.String)">
+            <summary>
+            Create a new SELECT statement with properties appropriate for this database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.CreateSelectStatement``1">
+            <summary>
+            Creates a SELECT statement for the table specified by the enum. Includes FROM and fields clauses.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.CreateInsertStatement``1(System.Object)">
+            <summary>
+            Creates an INSERT statement of the specified object for the table specified by the enum.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="pObjectToInsert"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.CreateUpdateStatement``1(System.Object)">
+            <summary>
+            Creates an UPDATE statement of the specified object for the table specified by the enum. Requires a primary key.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="pObjectToUpdate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.CreateDeleteStatement``1(System.Object)">
+            <summary>
+            Creates a DELETE statement of the specified object for the table specified by the enum. Requires a primary key.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="pObjectToDelete"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.SelectByKey``2(System.Object)">
+            <summary>
+            Select a single object by key from the table specified by the enum.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <typeparam name="T"></typeparam>
+            <param name="pKeyData">Key value to select. For composite keys, pass an object with properties for the different columns.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.Database.Insert``1(System.Object)">
+            <summary>
+            Inserts the specified object into the table specified by the enum.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="pObjectToInsert"></param>
+        </member>
+        <member name="M:Rational.DB.Database.Update``1(System.Object)">
+            <summary>
+            Updates the specified object in the table specified by the enum. Requires a primary key.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="pObjectToUpdate"></param>
+        </member>
+        <member name="M:Rational.DB.Database.Delete``1(System.Object)">
+            <summary>
+            Deletes the specified object from the table specified by the enum. Requires a primary key.
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="pObjectToDelete"></param>
+        </member>
+        <member name="M:Rational.DB.Database.SelectDataTable(Rational.DB.IDbStatement)">
+            <summary>
+            Runs the statement, returning the result as a datatable
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.SelectDataTable(Rational.DB.DbSelectPager)">
+            <summary>
+            Runs the pager, returning the result as a datatable. The pager specifies the SQL statement and page information for paged results.
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.SelectIntoDataTable(Rational.DB.IDbStatement,System.Data.DataTable)">
+            <summary>
+            Fills the datatable with results from execution of the statement.
+            Used for strongly typed datatables.
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.SelectDataSet(Rational.DB.IDbStatement)">
+            <summary>
+            Runs the statement, returning the result as a dataset
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObject``1(Rational.DB.IDbStatement,System.Func{Rational.DB.DbRow,``0})">
+            <summary>
+            Execute the statement, returning a single result row as a strongly typed object.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <param name="pStmt"></param>
+            <param name="pCopyFunc">Function which translates a single row to an instance of the object type</param>
+            <returns>An object of the specified type</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObject``1(Rational.DB.IDbStatement)">
+            <summary>
+            Execute the statement, returning a single result row as a strongly typed object. Copies values using reflection of the referenced type.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <param name="pStmt"></param>
+            <returns>An object of the specified type</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObject``2(Rational.DB.IDbStatement)">
+            <summary>
+            Execute the statement, returning a single result row as a strongly typed object. Copies values using the table enum TEnum, along with reflection of the referenced type.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <typeparam name="TEnum">Table enum for translation</typeparam>
+            <param name="pStmt"></param>
+            <returns>An object of the specified type</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObjectList``1(Rational.DB.IDbStatement,System.Func{Rational.DB.DbRow,``0})">
+            <summary>
+            Execute the statement, returning the results as a list of strongly typed objects.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <param name="pStmt"></param>
+            <param name="pCopyFunc">Function which translates a single row to an instance of the object type</param>
+            <returns>An object of the specified type</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObjectList``1(Rational.DB.DbSelectPager,System.Func{Rational.DB.DbRow,``0})">
+            <summary>
+            Execute the pager, returning the results as a list of strongly typed objects.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <param name="pPager">Pager to execute. Includes statement and page information for paged results.</param>
+            <param name="pCopyFunc">Function which translates a single row to an instance of the object type</param>
+            <returns>An object of the specified type</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObjectList``1(Rational.DB.IDbStatement)">
+            <summary>
+            Execute the statement, returning the results as a list of strongly typed objects. Copies values using reflection of the referenced type.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <param name="pStmt"></param>
+            <returns>An object of the specified type</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObjectList``2(Rational.DB.IDbStatement)">
+            <summary>
+            Execute the statement, returning the results as a list of strongly typed objects. Copies values using the table enum TEnum, along with reflection of the referenced type.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <typeparam name="TEnum">Table enum for translation</typeparam>
+            <param name="pStmt"></param>
+            <returns>An object of the specified type</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObjectList``1(Rational.DB.DbSelectPager)">
+            <summary>
+            Execute the pager, returning the results as a list of strongly typed objects. Copies values using reflection of the referenced type.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <param name="pPager">Pager to execute. Includes statement and page information for paged results.</param>
+            <returns>An object of the specified type</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObjectList``2(Rational.DB.DbSelectPager)">
+            <summary>
+            Execute the pager, returning the results as a list of strongly typed objects. Copies values using the table enum TEnum, along with reflection of the referenced type.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <typeparam name="TEnum">Table enum for translation</typeparam>
+            <param name="pPager">Pager to execute. Includes statement and page information for paged results.</param>
+            <returns>An object of the specified type</returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectIntoAction(Rational.DB.IDbStatement,System.Action{Rational.DB.DbRow})">
+            <summary>
+            Executes the statement, executing an action on each row returned.
+            </summary>
+            <param name="pStmt"></param>
+            <param name="pAction">Action to execute on each row</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectIntoAction(Rational.DB.IDbStatement,System.Action{Rational.DB.DbResultSet})">
+            <summary>
+            Executes the statement, executing an action on the resultset returned.
+            </summary>
+            <param name="pStmt"></param>
+            <param name="pAction">Action to execute</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObjectsIntoAction``1(Rational.DB.IDbStatement,System.Action{``0})">
+            <summary>
+            Executes the statement, executing an action on each object returned. Copies values using reflection of the referenced type.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <param name="pStmt"></param>
+            <param name="pAction">Action to execute on each object</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectObjectsIntoAction``2(Rational.DB.IDbStatement,System.Action{``0})">
+            <summary>
+            Executes the statement, executing an action on each object returned. Copies values using the table enum TEnum, along with reflection of the referenced type.
+            </summary>
+            <typeparam name="T">Type of object to return</typeparam>
+            <typeparam name="TEnum">Table enum for translation</typeparam>
+            <param name="pStmt"></param>
+            <param name="pAction">Action to execute on each object</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Database.SelectScalar``1(Rational.DB.IDbStatement)">
+            <summary>
+            Execute the statement with a single return value. Casts result to the specified type. Throws an error if the type is incompatible.
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.SelectScalarList``1(Rational.DB.IDbStatement)">
+            <summary>
+            Execute the statement with a single return column.
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.ExecuteAndSelectScalar(Rational.DB.IDbStatement,Rational.DB.IDbStatement)">
+            <summary>
+            Execute the non-select statement, and then execute the select statement with a single return value.
+            Used to get calculated fields for DBMS that does not support multi-statement.
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.Execute(Rational.DB.IDbStatement)">
+            <summary>
+            Execute the non-select statement. Returns the number of rows affected
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.GetParameterSummary(System.Data.IDbCommand,System.String@,System.Collections.Generic.IDictionary{System.String,System.Object}@)">
+            <summary>Get summary of parameters for events</summary>
+        </member>
+        <member name="M:Rational.DB.Database.ValidateObjectMapping(Rational.DB.DbRow,System.Type)">
+            <summary>Validate a result against an object schema</summary>
+        </member>
+        <member name="M:Rational.DB.Database.ValidateDataTableMapping(Rational.DB.DbRow,System.Data.DataTable)">
+            <summary>Validate a result against a DataTable schema</summary>
+        </member>
+        <member name="M:Rational.DB.Database.ValidateMapping(Rational.DB.DbRow,System.Collections.Generic.Dictionary{System.String,System.Type})">
+            <summary>Validate a result against a DataTable schema</summary>
+        </member>
+        <member name="M:Rational.DB.Database.RaiseValidationWarning(Rational.DB.Database.ValidationWarningEventArgs.eWarningType,System.String)">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.Database.DbRowToObject`1">
+            <summary>
+            Class to create an object from a DbRow using reflection. Should only be used for one query, as it caches the field list.
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Database.DbRowToObject`1.SetDbTranslation``1">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Database.DbRowToObject`1.CreateObject(Rational.DB.DbRow)">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.IDbStatement">
+            <summary>
+            Represents a database SQL statement
+            </summary>
+        </member>
+        <member name="P:Rational.DB.IDbStatement.Parameters">
+            <summary>Collection of database parameters associated with the statement</summary>
+        </member>
+        <member name="P:Rational.DB.IDbStatement.IsStoredProcedure">
+            <summary>Flag for stored procedures</summary>
+        </member>
+        <member name="P:Rational.DB.IDbStatement.TimeoutSecs">
+            <summary>Query timeout in seconds</summary>
+        </member>
+        <member name="P:Rational.DB.IDbStatement.DbType">
+            <summary>Type of database for SQL dialect</summary>
+        </member>
+        <member name="P:Rational.DB.IDbStatement.ParameterPrefix">
+            <summary>Prefix for SQL named parameters</summary>
+        </member>
+        <member name="P:Rational.DB.IDbStatement.QuotePrefix">
+            <summary>Prefix for escaping SQL identifiers</summary>
+        </member>
+        <member name="P:Rational.DB.IDbStatement.QuoteSuffix">
+            <summary>Suffix for escaping SQL identifiers</summary>
+        </member>
+        <member name="M:Rational.DB.IDbStatement.GetSql">
+            <summary>Gets the generated SQL for the statement</summary>
+        </member>
+        <member name="T:Rational.DB.SqlFragment">
+            <summary>
+            Represents a chunk of SQL within a statement
+            </summary>
+        </member>
+        <member name="F:Rational.DB.SqlFragment._parentStatement">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.SqlFragment.Sql">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.#ctor(Rational.DB.DbStatementBase)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String)">
+            <summary>
+            Append a string to the SQL fragment.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParams">Parameter(s) to associate with the SQL. For numbered parameters, pass a scalar value or a list of scalars. For named parameters, pass an object with a property for each value.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String,System.Object,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String,System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam4">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam4">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam5">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam4">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam5">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam6">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam4">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam5">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam6">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam7">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam4">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam5">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam6">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam7">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam8">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(System.String,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam4">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam5">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam6">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam7">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam8">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam9">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.AppendWithIdentifiers(System.String,System.Object,System.Object)">
+            <summary>
+            Append a string to the SQL fragment. Can reference and replace identifiers (table or column names). Can reference and include DB parameters.
+            </summary>
+            <param name="pSql"></param>
+            <param name="pIdentifiers"></param>
+            <param name="pParams">Parameter(s) to associate with the SQL. For numbered parameters, pass a scalar value or a list of scalars. For named parameters, pass an object with a property for each value.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Append(Rational.DB.IDbStatement)">
+            <summary>
+            Append a statement to the SQL, incorporating any existing parameters
+            </summary>
+            <param name="pStatement">Statement to append</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.AppendRaw(System.String)">
+            <summary>
+            Append a raw string to the SQL. Does not look for parameters or identifiers.
+            </summary>
+            <param name="pSql"></param>
+        </member>
+        <member name="P:Rational.DB.SqlFragment.Length">
+            <summary>Length of the SQL fragment</summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.Clear">
+            <summary>Clear the fragment</summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragment.GetSql">
+            <summary>Get final SQL for the fragment</summary>
+        </member>
+        <member name="T:Rational.DB.SqlFragmentFields">
+            <summary>
+            SQL fragment for use in the fields clause of a select statement
+            </summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentFields.#ctor(Rational.DB.DbStatementBase)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentFields.Add(System.String,System.String,System.String)">
+            <summary>Add field to the list. Automatically includes delimiter.</summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentFields.Add(System.Collections.Generic.IEnumerable{System.String},System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>Add fields to the list. Automatically includes delimiters.</summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentFields.Add``1(System.String)">
+            <summary>Add all fields defines in specified Table enum.</summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentFields.Add(System.Collections.Generic.IEnumerable{System.Enum},System.String)">
+            <summary>Add specified fields from a Table enum</summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentFields.Add(System.Enum,System.String,System.String)">
+            <summary>Add specified field from a Table enum</summary>
+        </member>
+        <member name="T:Rational.DB.SqlFragmentWhere">
+            <summary>
+            SQL fragment for use in the WHERE clause of a select statement
+            </summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentWhere.#ctor(Rational.DB.DbStatementBase)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentWhere.And(System.String,System.Object)">
+            <summary>
+            Append a condition to the WHERE fragment, including AND if necessary. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParams">Parameter(s) to associate with the SQL. For numbered parameters, pass a scalar value or a list of scalars. For named parameters, pass an object with a property for each value.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentWhere.And(System.String,System.Object,System.Object)">
+            <summary>
+            Append a condition to the WHERE fragment, including AND if necessary. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentWhere.And(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a condition to the WHERE fragment, including AND if necessary. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentWhere.And(System.String,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a condition to the WHERE fragment, including AND if necessary. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentWhere.AndWithIdentifiers(System.String,System.Object,System.Object)">
+            <summary>
+            Append a condition to the WHERE fragment, including AND if necessary. Can reference and replace identifiers (table or column names). Can reference and include DB parameters.
+            </summary>
+            <param name="pSql"></param>
+            <param name="pIdentifiers"></param>
+            <param name="pParams"></param>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentWhere.Or(System.String,System.Object)">
+            <summary>
+            Append a condition to the WHERE fragment, including OR if necessary. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParams">Parameter(s) to associate with the SQL. For numbered parameters, pass a scalar value or a list of scalars. For named parameters, pass an object with a property for each value.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentWhere.Or(System.String,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Append a condition to the WHERE fragment, including OR if necessary. Can reference and include DB parameters.
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentWhere.OrWithIdentifiers(System.String,System.Object,System.Object)">
+            <summary>
+            Append a condition to the WHERE fragment, including OR if necessary. Can reference and replace identifiers (table or column names). Can reference and include DB parameters.
+            </summary>
+            <param name="pSql"></param>
+            <param name="pIdentifiers"></param>
+            <param name="pParams"></param>
+        </member>
+        <member name="T:Rational.DB.SqlFragmentGroupBy">
+            <summary>
+            SQL fragment for use in the GROUP BY clause of a select statement
+            </summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentGroupBy.#ctor(Rational.DB.DbStatementBase)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentGroupBy.Add(System.String,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentGroupBy.Add(System.Enum,System.String)">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.SqlFragmentOrderBy">
+            <summary>
+            SQL fragment for use in the ORDER BY clause of a select statement
+            </summary>
+        </member>
+        <member name="T:Rational.DB.SqlFragmentOrderBy.eOrderByDirection">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.SqlFragmentOrderBy.eOrderByDirection.ASC">
+            <summary>Ascending</summary>
+        </member>
+        <member name="F:Rational.DB.SqlFragmentOrderBy.eOrderByDirection.DESC">
+            <summary>Descending</summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentOrderBy.#ctor(Rational.DB.DbStatementBase)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentOrderBy.Add(System.String,Rational.DB.SqlFragmentOrderBy.eOrderByDirection,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.SqlFragmentOrderBy.Add(System.Enum,Rational.DB.SqlFragmentOrderBy.eOrderByDirection,System.String)">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.SqlCteCollection">
+            <summary>
+            Represents a list of SQL statements used for common table expressions (CTE)
+            </summary>
+        </member>
+        <member name="F:Rational.DB.SqlCteCollection._parentStatement">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.SqlCteCollection._names">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.SqlCteCollection._statements">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.SqlCteCollection.#ctor(Rational.DB.DbStatementBase)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.SqlCteCollection.Add(System.String,Rational.DB.DbStatement)">
+            <summary>
+            Add a CTE to the list, incorporating any existing parameters
+            </summary>
+            <param name="pName">Name of CTE</param>
+            <param name="pStatement">Statement to add</param>
+        </member>
+        <member name="T:Rational.DB.DbStatementBase">
+            <summary>
+            Base class for statements
+            </summary>
+        </member>
+        <member name="M:Rational.DB.DbStatementBase.#ctor">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbStatementBase._parameters">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbStatementBase.Parameters">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbStatementBase.IsStoredProcedure">
+            <summary>Set to true if the SQL is executing a stored procedure</summary>
+        </member>
+        <member name="P:Rational.DB.DbStatementBase.TimeoutSecs">
+            <summary>Timeout in seconds before statement will be terminated</summary>
+        </member>
+        <member name="P:Rational.DB.DbStatementBase.DbType">
+            <summary>Target database type</summary>
+        </member>
+        <member name="P:Rational.DB.DbStatementBase.ParameterPrefix">
+            <summary>Prefix character for parameter names</summary>
+        </member>
+        <member name="P:Rational.DB.DbStatementBase.QuotePrefix">
+            <summary>Prefix delimiter for escaping identifiers (field names)</summary>
+        </member>
+        <member name="P:Rational.DB.DbStatementBase.QuoteSuffix">
+            <summary>Suffix delimiter for escaping identifiers (field names)</summary>
+        </member>
+        <member name="M:Rational.DB.DbStatementBase.GetSql">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbStatementBase.QuoteIdentifier(System.String)">
+            <summary>Returns the specified identifier escaped with the defined delimiters</summary>
+        </member>
+        <member name="M:Rational.DB.DbStatementBase.TableIdentifier``1">
+            <summary>Returns the escaped table name, using the specified Table enum</summary>
+        </member>
+        <member name="M:Rational.DB.DbStatementBase.ColumnIdentifier(System.Enum)">
+            <summary>Returns the escaped field name, using the specified Table enum value</summary>
+        </member>
+        <member name="F:Rational.DB.DbStatementBase.DefaultParameterPrefix">
+            <summary>prefix used in specifying statements. will be converted to db prefix on run</summary>
+        </member>
+        <member name="F:Rational.DB.DbStatementBase.DefaultQuotePrefix">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbStatementBase.DefaultQuoteSuffix">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbStatementBase.ResolveParams(System.String,System.Object[],Rational.DB.IDbStatement)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbStatementBase.ResolveIdentifiersAndParams(System.String,System.Object,System.Object,Rational.DB.IDbStatement)">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbStatement">
+            <summary>
+            Simple statement wrapper
+            </summary>
+        </member>
+        <member name="P:Rational.DB.DbStatement.Statement">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbStatement.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbStatement.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="pSql">SQL string to append</param>
+        </member>
+        <member name="M:Rational.DB.DbStatement.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParams">Parameter(s) to associate with the SQL. For numbered parameters, pass a scalar value or a list of scalars. For named parameters, pass an object with a property for each value.</param>
+        </member>
+        <member name="M:Rational.DB.DbStatement.#ctor(System.String,System.Object,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.DbStatement.#ctor(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.DbStatement.#ctor(System.String,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="pSql">SQL string to append</param>
+            <param name="pParam0">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam1">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam2">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+            <param name="pParam3">Numbered parameter to associate with the SQL, scalar value or a list of scalars.</param>
+        </member>
+        <member name="M:Rational.DB.DbStatement.Init">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbStatement.GetSql">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbProcedureCall">
+            <summary>
+            Wrapper class for a stored procedure statement
+            </summary>
+        </member>
+        <member name="P:Rational.DB.DbProcedureCall.IsStoredProcedure">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbProcedureCall.SpName">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbProcedureCall.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbProcedureCall.#ctor(System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbProcedureCall.GetSql">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbConditionalStatement">
+            <summary>
+            Builder for a SQL statement with a WHERE condition (e.g. UPDATE, DELETE). Use DbSelectStatement for a SELECT.
+            </summary>
+        </member>
+        <member name="P:Rational.DB.DbConditionalStatement.Action">
+            <summary></summary>
+        </member>
+        <member name="P:Rational.DB.DbConditionalStatement.Where">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConditionalStatement.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConditionalStatement.#ctor(System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConditionalStatement.Init">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbConditionalStatement.GetSql">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbSelectStatement">
+            <summary>
+            Builder for a SQL SELECT statement.
+            </summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectStatement.Fields">
+            <summary>Fields clause of statement</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectStatement.From">
+            <summary>FROM clause of statement</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectStatement.Where">
+            <summary>WHERE clause of statement</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectStatement.GroupBy">
+            <summary>GROUP BY clause of statement</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectStatement.OrderBy">
+            <summary>ORDER BY clause of statement</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectStatement.ResultMax">
+            <summary>Limit for query (e.g. TOP)</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectStatement.Distinct">
+            <summary>Include DISTINCT modifier</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectStatement.WithCte">
+            <summary>WITH clauses for common table expressions (CTE)</summary>
+        </member>
+        <member name="M:Rational.DB.DbSelectStatement.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbSelectStatement.#ctor(System.String,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbSelectStatement.Init">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbSelectStatement.GetSql">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbSelectPager">
+            <summary>
+            Wrapper for a paged SELECT statement.
+            </summary>
+        </member>
+        <member name="M:Rational.DB.DbSelectPager.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbSelectPager.#ctor(Rational.DB.DbSelectStatement)">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbSelectPager.ePagingMethod">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbSelectPager.ePagingMethod.NONE">
+            <summary>Paging not supported</summary>
+        </member>
+        <member name="F:Rational.DB.DbSelectPager.ePagingMethod.OFFSET">
+            <summary>Implement paging using OFFSET and FETCH clauses</summary>
+        </member>
+        <member name="F:Rational.DB.DbSelectPager.ePagingMethod.CTE">
+            <summary>Implement paging with a wrapper common table expression</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectPager.SelectStatement">
+            <summary>Base statement to be paged</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectPager.ResultPage">
+            <summary>Target page to be retrieved. ResultPage or ResultOffset must be defined.</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectPager.ResultOffset">
+            <summary>Zero-based offset of first record to be returned. ResultPage or ResultOffset must be defined.</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectPager.ResultMax">
+            <summary>Maximum rows to be retrieved</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectPager.CalculateTotals">
+            <summary>Whether to calculate total row/page counts. Requires an additional query.</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectPager.TotalRows">
+            <summary>Total rows available, if CalculateTotals was selected</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectPager.TotalPages">
+            <summary>Total pages available, if using ResultPage and CalculateTotals was selected</summary>
+        </member>
+        <member name="P:Rational.DB.DbSelectPager.PagingMethod">
+            <summary>SQL method to be used for paging</summary>
+        </member>
+        <member name="M:Rational.DB.DbSelectPager.GetSql">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbSelectPager.GetRowCountSql">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbTransaction">
+            <summary>
+            Wraps a .NET DbTransaction object to limit access to database functions
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="F:Rational.DB.DbTransaction._connInfo">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbTransaction._guid">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbTransaction._transaction">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbTransaction._connection">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.DbTransaction._completed">
+            <summary></summary>
+        </member>
+        <member name="E:Rational.DB.DbTransaction.OnClose">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.DbTransaction.OnCloseEventHandler">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbTransaction.#ctor(Rational.DB.DbConnectionInfo)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbTransaction.CreateCommand">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbTransaction.Rollback">
+            <summary>Perform rollback of all activity done within the transaction</summary>
+        </member>
+        <member name="M:Rational.DB.DbTransaction.Commit">
+            <summary>Commit activity done within the transaction to the database</summary>
+        </member>
+        <member name="M:Rational.DB.DbTransaction.Dispose">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.DbTransaction.Dispose(System.Boolean)">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.TableDefinitionAttributes">
+            <summary>
+            Helper class for reading Table and Column attributes
+            </summary>
+        </member>
+        <member name="M:Rational.DB.TableDefinitionAttributes.GetTableAttribute``1">
+            <summary>
+            Get the defined Table attribute for an enum (or a default)
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.TableDefinitionAttributes.GetTableSqlName``1">
+            <summary>
+            Get the SqlName for the table enum (or enum name, if missing)
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.TableDefinitionAttributes.GetColumnAttributes``1">
+            <summary>
+            Get the defined Column attributes for an enum (or a default)
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.TableDefinitionAttributes.GetColumnAttribute(System.Enum)">
+            <summary>
+            Get the defined Column attribute for an enum value (or a default)
+            </summary>
+            <param name="pEnumVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.TableDefinitionAttributes.GetColumnSqlName(System.Enum)">
+            <summary>
+            Get the SqlName for the column enum value (or enum value name, if missing)
+            </summary>
+            <param name="pEnumVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Rational.DB.TableDefinitionAttributes.GetColumnClrName(System.Enum)">
+            <summary>
+            Get the ClrName for the column enum value (or enum value name, if missing)
+            </summary>
+            <param name="pEnumVal"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Rational.DB.TableDefinitionAttributes._allTableAttributes">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.TableDefinitionAttributes._allColumnAttributes">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.TableDefinitionAttributes.GetTableAttribute(System.Type)">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.TableDefinitionAttributes.GetColumnAttributes(System.Type)">
+            <summary></summary>
+        </member>
+        <member name="F:Rational.DB.TableDefinitionAttributes._lockTarget">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.TableDefinitionAttributes.LoadAttributeData(System.Type)">
+            <summary></summary>
+        </member>
+        <member name="T:Rational.DB.Utility">
+            <summary></summary>
+        </member>
+        <member name="M:Rational.DB.Utility.TranslateDateRange(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Boolean,System.TimeZoneInfo,System.TimeZoneInfo)">
+            <summary>
+            Utility function to translate a range of dates or date/times to a consistent format, including timezone. Result should be used in a *left-inclusive* range comparison (i.e. (dt GTE d1 AND dt LT d2))
+            </summary>
+            <param name="pDateFrom">The start date/time of the range</param>
+            <param name="pDateTo">The start date/time of the range</param>
+            <param name="pDateOnly">Interpret source date/times as date-only</param>
+            <param name="pSourceTimeZone">If timezone conversion is required, source timezone. Defaults to UTC</param>
+            <param name="pDestTimeZone">If timezone conversion is required, destination timezone. Defaults to UTC</param>
+            <remarks></remarks>
+        </member>
+        <member name="M:Rational.DB.Utility.CompareSchema(System.Data.DataTable,System.Data.DataTable)">
+            <summary>
+            Compares the columns and types defined in each datatable, returning errors on any differences
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Utility.RemoveDataTableConstraints(System.Data.DataTable)">
+            <summary>
+            Remove any constraints (unique, readonly, etc) from a DataTable
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Utility.IsSimpleType(System.Type)">
+            <summary>
+            Check if a type is one of the simple types (numbers, dates, strings, boolean)
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Utility.GetPropertyInfoCaseInsensitive(System.Type,System.String)">
+            <summary>
+            Get a property from an object, ignoring case
+            </summary>
+        </member>
+        <member name="M:Rational.DB.Utility.GetFieldInfoCaseInsensitive(System.Type,System.String)">
+            <summary>
+            Get a field from an object, ignoring case
+            </summary>
+        </member>
+    </members>
+</doc>

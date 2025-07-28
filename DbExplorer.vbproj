@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3069E73D-CF94-4174-BC96-5DC82CBE8153}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>DbExplorer.Main</StartupObject>
+    <RootNamespace>DbExplorer</RootNamespace>
+    <AssemblyName>DbExplorer</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>DbExplorer.xml</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>DbExplorer.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DbCodeGen">
+      <HintPath>Components\DbCodeGen.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DbSchemaTools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\DbSchemaTools.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>Components\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\LumenWorks.Framework.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="Rational.DB">
+      <HintPath>Components\Rational.DB.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ScintillaNET">
+      <HintPath>Components\ScintillaNET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Westwind.RazorHosting">
+      <HintPath>Components\Westwind.RazorHosting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ctlEditSql.Designer.vb">
+      <DependentUpon>ctlEditSql.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlEditSql.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlEditSqlSimple.Designer.vb">
+      <DependentUpon>ctlEditSqlSimple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlEditSqlSimple.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlQuery.Designer.vb">
+      <DependentUpon>ctlQuery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlQuery.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlQueryResult.Designer.vb">
+      <DependentUpon>ctlQueryResult.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlQueryResult.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlTabSplitter.Designer.vb">
+      <DependentUpon>ctlTabSplitter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlTabSplitter.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomMessageBox.Designer.vb">
+      <DependentUpon>CustomMessageBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CustomMessageBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogResultWithPayload.vb" />
+    <Compile Include="ExtensionMethods.vb" />
+    <Compile Include="frmAbout.Designer.vb">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConnStringHelp.Designer.vb">
+      <DependentUpon>frmConnStringHelp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmConnStringHelp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmbedDll.vb" />
+    <Compile Include="EmbedDllData.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmbedDllData.resx</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditConnection.Designer.vb">
+      <DependentUpon>frmEditConnection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditConnection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConnections.Designer.vb">
+      <DependentUpon>frmConnections.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmConnections.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditDb.Designer.vb">
+      <DependentUpon>frmEditDb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditDb.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditSql.Designer.vb">
+      <DependentUpon>frmEditSql.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditSql.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.vb">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuery.Designer.vb">
+      <DependentUpon>frmQuery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuery.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenSql.vb" />
+    <Compile Include="IFormGroupKey.vb" />
+    <Compile Include="Main.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="MyDataGridView.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ObjectLabelPair.vb" />
+    <Compile Include="PromptForm.Designer.vb">
+      <DependentUpon>PromptForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PromptForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.vb" />
+    <Compile Include="Security.vb" />
+    <Compile Include="SuccessAndDescription.vb" />
+    <Compile Include="Util.vb" />
+    <Compile Include="Validation.vb" />
+    <Compile Include="WaitCursorHandler.vb" />
+    <Compile Include="WaitForm.Designer.vb">
+      <DependentUpon>WaitForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WaitForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ctlEditSql.resx">
+      <DependentUpon>ctlEditSql.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlEditSqlSimple.resx">
+      <DependentUpon>ctlEditSqlSimple.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlQuery.resx">
+      <DependentUpon>ctlQuery.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlQueryResult.resx">
+      <DependentUpon>ctlQueryResult.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlTabSplitter.resx">
+      <DependentUpon>ctlTabSplitter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomMessageBox.resx">
+      <DependentUpon>CustomMessageBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConnStringHelp.resx">
+      <DependentUpon>frmConnStringHelp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmbedDllData.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EmbedDllData.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConnections.resx">
+      <DependentUpon>frmConnections.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditConnection.resx">
+      <DependentUpon>frmEditConnection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditDb.resx">
+      <DependentUpon>frmEditDb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditSql.resx">
+      <DependentUpon>frmEditSql.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuery.resx">
+      <DependentUpon>frmQuery.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PromptForm.resx">
+      <DependentUpon>PromptForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitForm.resx">
+      <DependentUpon>WaitForm.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Sample.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+    <None Include="Resources\load.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\edit.png" />
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app.ico" />
+    <None Include="Components\Westwind.RazorHosting.dll" />
+    <None Include="Components\System.Web.Razor.dll" />
+    <None Include="Components\ScintillaNET.dll" />
+    <None Include="Components\LumenWorks.Framework.IO.dll" />
+    <None Include="Components\EPPlus.dll" />
+    <None Include="Components\DbSchemaTools.dll" />
+    <None Include="Components\DbCodeGen.dll" />
+    <None Include="Resources\wait.png" />
+    <None Include="Resources\about_image.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\password.png" />
+    <None Include="Resources\export.png" />
+    <None Include="Resources\stopbtn.png" />
+    <None Include="Resources\play.png" />
+    <None Include="Resources\copy.png" />
+    <None Include="Resources\reload.png" />
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

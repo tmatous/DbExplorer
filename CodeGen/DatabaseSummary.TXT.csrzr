@@ -1,0 +1,27 @@
+﻿@inherits DbCodeGen.CodeGenTemplate<DbCodeGen.SchemaCodeGenModel>
+@*OutputFormat:TXT*@
+@{
+
+@*
+Generates the database schema summary (text format)
+=================================================================================
+*@
+
+foreach (var tbl in Model.Database.Tables)
+{
+
+@:@tbl.Name
+
+	foreach (var col in tbl.Columns)
+	{
+	
+@:  @col.Name.PadRight(30)	@(col.InPrimaryKey ? "PK " : "")@(col.InForeignKey ? "FK " : "")	@col.DdlDataType.PadRight(30)	@(col.Nullable ? "NULL" : "NOT NULL")
+
+	}
+
+@:
+
+} //foreach table
+
+//end script
+}

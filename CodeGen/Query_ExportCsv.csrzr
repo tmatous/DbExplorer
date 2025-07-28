@@ -1,0 +1,25 @@
+﻿@inherits DbCodeGen.CodeGenTemplate<DbCodeGen.DataReaderCodeGenModel>
+@*OutputFormat:CSV*@
+@{
+
+@*
+Sample template to export results of a query to a CSV file
+=================================================================================
+*@
+
+var names = new System.Collections.Generic.List<string>();
+for (int i = 0; i < Model.Reader.FieldCount; i++)
+{
+	names.Add(Model.Reader.GetName(i));
+}
+@:@Model.Helper.CreateCsvLine(names, ",")
+
+var values = new object[Model.Reader.FieldCount];
+while (Model.Reader.Read())
+{
+Model.Reader.GetValues(values);
+@:@Model.Helper.CreateCsvLine(values, ",")
+}
+
+//end script
+}

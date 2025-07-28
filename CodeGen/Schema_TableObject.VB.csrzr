@@ -1,0 +1,45 @@
+﻿@inherits DbCodeGen.CodeGenTemplate<DbCodeGen.SchemaCodeGenModel>
+@*OutputFormat:VB*@
+@{
+
+@*
+Generates a business object (POCO) class for one or more tables (VB)
+=================================================================================
+*@
+
+foreach (var tbl in Model.Tables)
+{
+
+	if (!String.IsNullOrEmpty(tbl.Summary))
+	{
+
+@:''' <summary>@(tbl.Summary)</summary>
+
+	}
+
+@:Partial Public Class @(tbl.ClrName)
+@:
+
+	for (var colIdx = 0; colIdx < tbl.Columns.Count; colIdx++)
+	{
+		var col = tbl.Columns[colIdx];
+		if (!String.IsNullOrEmpty(col.Summary))
+		{
+
+@:
+@:	''' <summary>@(col.Summary)</summary>
+
+		}
+
+@:	Public Property @(Model.Helper.EscapeIdentifier(col.Name)) As @(Model.Helper.GetClrTypeName(col))@(((col.DataClass == DbSchemaTools.eDataClass.StringType) && !col.Nullable) ? " = String.Empty" : "")
+
+	}
+
+@:
+@:End Class
+@:
+
+} //foreach table
+
+//end script
+}

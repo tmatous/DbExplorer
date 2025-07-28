@@ -1,0 +1,124 @@
+﻿@inherits DbCodeGen.CodeGenTemplate<DbCodeGen.SchemaCodeGenModel>
+@*OutputFormat:HTM*@
+@{
+
+@*
+Generates a table schema summary (html format)
+=================================================================================
+*@
+
+@:<html>
+@:<head>
+@:<title></title>
+@:<style>
+@:body{font-family:"Lucida Sans Unicode", "Lucida Grande", Sans-Serif;font-size:12px;}
+@:.data-table{width:100%;text-align:left;border-collapse:collapse;}
+@:.data-table th{font-size:13px;font-weight:bold;text-align:left;background:#b9c9fe;border-top:4px solid #aabcfe;border-bottom:1px solid #fff;color:#039;padding:8px;}
+@:.data-table td{font-size:12px;background:#e8edff;border-bottom:1px solid #fff;color:#669;border-top:1px solid transparent;padding:8px;}
+@:.data-table tr:hover td{background:#d0dafd;color:#339;}
+@:h1{font-size:18px;}
+@:h2{font-size:14px;}
+</style>
+@:</head>
+@:<body>
+
+foreach (var tbl in Model.Tables)
+{
+
+@:<h1>Table: @(tbl.SchemaName).@(tbl.Name)</h1>
+@:<h2>Columns</h2>
+@:<table class="data-table">
+@:<tr><th>Name</th><th>Key</th><th>Data Type</th><th>Nulls</th><th>SQL Type</th><th>Data Class</th><th>CLR Type</th></tr>
+
+	foreach (var col in tbl.Columns)
+	{
+
+@:<tr><td>@col.Name</td><td>@(col.InPrimaryKey ? "PK " : "")@(col.InForeignKey ? "FK " : "")</td><td>@col.DdlDataType</td><td>@(col.Nullable ? "NULL" : "NOT NULL")</td><td>@(col.SqlType)</td><td>@(col.DataClass)</td><td>@(col.ClrType)</td></tr>
+
+	} // foreach column
+
+@:</table>
+@:<br>
+
+
+@:<h2>Foreign Keys</h2>
+	if (tbl.ForeignKeys.Count > 0)
+	{
+
+@:<table class="data-table">
+@:<tr><th>Name</th><th>Definition</th></tr>
+
+		foreach (var fk in tbl.ForeignKeys)
+		{
+
+@:<tr>
+@:<td>@fk.Name</td>
+@:<td>
+
+			foreach (var fkCol in fk.Columns)
+			{
+
+@:@(fkCol.Column.Table.Name).@(fkCol.Column.Name) REFERENCES @(fkCol.ReferencedColumn.Table.Name).@(fkCol.ReferencedColumn.Name)<br>
+
+			} //foreach fkCol
+
+@:</td>
+@:</tr>
+
+		} //foreach fk
+
+@:</table>
+
+	} else {
+
+@:<div><i>None</i></div>
+
+	}
+
+@:<br>
+
+
+@:<h2>References</h2>
+	if (tbl.ReferenceKeys.Count > 0)
+	{
+
+@:<table class="data-table">
+@:<tr><th>Name</th><th>Definition</th></tr>
+
+		foreach (var fk in tbl.ReferenceKeys)
+		{
+
+@:<tr>
+@:<td>@fk.Name</td>
+@:<td>
+
+			foreach (var fkCol in fk.Columns)
+			{
+
+@:@(fkCol.Column.Table.Name).@(fkCol.Column.Name) REFERENCES @(fkCol.ReferencedColumn.Table.Name).@(fkCol.ReferencedColumn.Name)<br>
+
+			} //foreach col
+
+@:</td>
+@:</tr>
+
+		} //foreach fk
+
+@:</table>
+
+	} else {
+
+@:<div><i>None</i></div>
+
+	}
+
+@:<br>
+@:<br>
+
+} //foreach table
+
+@:</body>
+@:</html>
+
+//end script
+}
