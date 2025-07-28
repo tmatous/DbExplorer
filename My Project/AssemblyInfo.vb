@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("Rational Softworks")> 
 <Assembly: AssemblyProduct("DbExplorer")>
-<Assembly: AssemblyCopyright("Copyright 2012-2024")>
+<Assembly: AssemblyCopyright("Copyright 2012-2025")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2024.2.4.0")>
-<Assembly: AssemblyFileVersion("2024.2.4.0")>
+<Assembly: AssemblyVersion("2.4.1.0")>
+<Assembly: AssemblyFileVersion("2.4.1.0")>
